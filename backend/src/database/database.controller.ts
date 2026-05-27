@@ -9,7 +9,12 @@ export function createTask({ title, description, category }: newTask): number {
     day: "numeric",
   });
 
-  const result = createTaskStmt.run(title, description, category, currentTime);
+  const result = createTaskStmt.run(
+    title,
+    description,
+    category.toLowerCase(),
+    currentTime,
+  );
 
   // TODO: Addera felhantering om det inte går att skapa
 
@@ -21,7 +26,7 @@ export function getAllTasks() {
 
   return rows.map((row: any) => ({
     id: row.id,
-    title: row.tiltle,
+    title: row.title,
     description: row.description,
     category: row.category,
     status: row.status,

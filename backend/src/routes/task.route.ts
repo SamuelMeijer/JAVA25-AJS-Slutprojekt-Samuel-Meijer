@@ -1,10 +1,9 @@
 import { Router, Request, Response } from "express";
 import * as db from "../database/database.controller";
-//TODO: Addera types
+import { createTaskValidation } from "../models/tasks.validations";
+import { validationResult } from "express-validator";
 
 export const taskRouter = Router();
-
-// TODO: Fixa validering från requests innan kommunkation med DB!
 
 taskRouter.get("/", (req: Request, res: Response) => {
   const tasks = db.getAllTasks();
@@ -12,12 +11,24 @@ taskRouter.get("/", (req: Request, res: Response) => {
   res.json(tasks);
 });
 
-taskRouter.post("/", (req: Request, res: Response) => {
-  // TODO: Adderar validation
+taskRouter.post("/", createTaskValidation, (req: Request, res: Response) => {
+  const errors = validationResult(req);
 
-  const newTaskId = db.createTask(req.body);
-  
-  // TODO: Adderar felhantering
-  
-  res.json({ message: `POST '/' - Adding task with id: ${newTaskId}` });
+  if (!errors.isEmpty()) {
+    res.status(400).json({ errors: errors.array() });
+    return;
+  }
+
+  const { title, description, category } = req.body;
+  const newTaskId = db.createTask({ title, description, category });
+
+  // TODO: Adderar felhantering om det blir fel vid skapandet?
+
+  res
+    .status(201)
+    .json({ message: `POST '/' - Adding task with id: ${newTaskId}` });
 });
+
+// TODO: Lägg till funktionalitet för att kunna hämta task via ID
+// TODO: Lägg till funktionalitet för att uppdatera en task - Med validering
+// TODO: Lägg till funktionalitet för att radera en specifik task
