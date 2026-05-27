@@ -4,7 +4,7 @@ export type Task = {
   description: string;
   category: string;
   status: string;
-  person: string;
+  person: string | null;
   timestamp: string;
 };
 
@@ -12,7 +12,4 @@ export type newTask = {
   title: string;
   description: string;
   category: string;
-  status: string;
-  person: string;
-  timestamp: string;
 };

@@ -1,24 +1,17 @@
 import { newTask, Task } from "../models/tasks.types";
 import { createTaskStmt, getAllTasksStmt } from "./database.statements";
 
-export function createTask({
-  title,
-  description,
-  category,
-  status,
-  person,
-  timestamp,
-}: newTask): number {
-  const result = createTaskStmt.run(
-    title,
-    description,
-    category,
-    status,
-    person,
-    timestamp,
-  );
+export function createTask({ title, description, category }: newTask): number {
+  // Skapar 'YYYY-MM-DD'-string
+  let currentTime = new Date().toLocaleDateString("sv-SE", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
 
-  // TODO: Addera felhantering
+  const result = createTaskStmt.run(title, description, category, currentTime);
+
+  // TODO: Addera felhantering om det inte går att skapa
 
   return result.lastInsertRowid as number;
 }

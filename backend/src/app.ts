@@ -6,6 +6,7 @@ app.use(express.json());
 // TODO: Addera så man kan serva statiska filer
 
 app.use("/api/tasks", taskRouter);
+// TODO: Addera route för pages
 
 /* TODO: Addera felhantering
     1. 404-sida
