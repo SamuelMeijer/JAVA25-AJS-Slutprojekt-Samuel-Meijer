@@ -45,8 +45,6 @@ taskRouter.post("/", createTaskValidation, (req: Request, res: Response) => {
   const { title, description, category } = req.body;
   const newTaskId = db.createTask({ title, description, category });
 
-  // TODO: Adderar felhantering om det blir fel vid skapandet?
-
   res
     .status(201)
     .json({ message: `POST '/' - Adding task with id: ${newTaskId}` });
@@ -95,5 +93,18 @@ taskRouter.patch(
   },
 );
 
-// TODO: Lägg till funktionalitet för att radera en specifik task
+taskRouter.delete("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  if (typeof id === "string") {
+    const isDeleted = db.deleteTask(id);
+    const message = isDeleted
+      ? "Task delted successfully"
+      : "Failed to delete task";
+    res.json(message);
+  } else {
+    res.status(400).json({ error: "Only one id may be provided" });
+  }
+});
+
 // TODO: Lägg till 404 - för requests som inte finns

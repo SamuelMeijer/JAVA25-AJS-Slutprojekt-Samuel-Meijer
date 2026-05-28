@@ -1,6 +1,7 @@
 import { newTask, Task, updateTask } from "../models/tasks.types";
 import {
   createTaskStmt,
+  deleteTaskStmt,
   getAllTasksStmt,
   getTaskByIdStmt,
   updateTaskStmt,
@@ -20,8 +21,6 @@ export function createTask({ title, description, category }: newTask): number {
     category.toLowerCase(),
     currentTime,
   );
-
-  // TODO: Addera felhantering om det inte går att skapa?
 
   return result.lastInsertRowid as number;
 }
@@ -50,4 +49,7 @@ export function updateTask({ id, status, person }: updateTask) {
   return result.changes > 0;
 }
 
-// TODO: Lägg till funktionalitet för att radera en specifik task
+export function deleteTask(id: string) {
+  const result = deleteTaskStmt.run(id);
+  return result.changes > 0;
+}

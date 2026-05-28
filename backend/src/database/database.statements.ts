@@ -20,4 +20,7 @@ export const updateTaskStmt = db.prepare(`
     WHERE id = ?
 `);
 
-// TODO: Addera statement för att radera en task
+export const deleteTaskStmt = db.prepare(`
+    DELETE FROM tasks
+    WHERE id = ?
+`);
