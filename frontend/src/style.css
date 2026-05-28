@@ -289,7 +289,7 @@ code {
 }
 
 #newTaskForm input[type="submit"] {
-  padding: 0.25rem;
+  padding: 0.5rem;
   margin: 1.5rem;
 }
 
@@ -325,5 +325,5 @@ code {
 }
 
 .card button {
-  padding: 0.25rem;
+  padding: 0.5rem;
 }
