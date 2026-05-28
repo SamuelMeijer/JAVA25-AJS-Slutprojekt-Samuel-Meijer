@@ -7,3 +7,9 @@ export type Task = {
   person: undefined | string;
   timestamp: string;
 };
+
+export type updateTask = {
+  id: number;
+  status?: string;
+  person?: string;
+};

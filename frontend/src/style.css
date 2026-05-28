@@ -277,6 +277,10 @@ code {
 }
 
 /* TODO: Se vilken defaultstyling jag kan ta bort på ett bra sätt*/
+#userFeedback {
+  color: red;
+}
+
 #newTaskForm {
   display: flex;
   flex-direction: column;
@@ -285,6 +289,7 @@ code {
 }
 
 #newTaskForm input[type="submit"] {
+  padding: 0.25rem;
   margin: 1.5rem;
 }
 
@@ -296,16 +301,29 @@ code {
   flex-direction: row;
   justify-content: space-evenly;
 
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
 }
 
 .newTasksContainer,
 .doingTasksContainer,
 .doneTasksContainer {
   width: 100%;
-  outline: solid 1px green;
+  padding: 0 0.5rem;
+  /* outline: solid 1px green; */
 }
 
 .card {
-  border: 1px solid chocolate;
+  min-height: 270px;
+  margin-bottom: 2rem;
+  border: 2px solid #fff;
+  border-radius: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+.card p {
+  margin-bottom: 0.5rem;
+}
+
+.card button {
+  padding: 0.25rem;
 }
