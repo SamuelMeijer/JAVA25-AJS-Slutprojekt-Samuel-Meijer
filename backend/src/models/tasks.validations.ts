@@ -9,7 +9,6 @@ export const createTaskValidation = [
     .trim()
     .notEmpty()
     .custom((value) => {
-      console.log("value", value);
       return (
         value.toLowerCase() === "ux" ||
         value.toLowerCase() === "frontend" ||
@@ -18,4 +17,24 @@ export const createTaskValidation = [
     }),
 ];
 
-// TODO: Addera validation för uppdatering. Kan använda 'oneOf' för att säkerställa att en av två värden finns eftersom man ska kunna uppdatera person eller status.
+export const updateTaskValidation = [
+  oneOf(
+    [
+      body("status")
+        .exists()
+        .isString()
+        .trim()
+        .notEmpty()
+        .custom((value) => {
+          return (
+            value.toLowerCase() === "doing" || value.toLowerCase() === "done"
+          );
+        }),
+      body("person").exists().isString().trim().notEmpty(),
+    ],
+    {
+      message:
+        "At least one of 'person' or 'status' must be provided with valid values",
+    },
+  ),
+];

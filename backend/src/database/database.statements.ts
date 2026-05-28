@@ -14,6 +14,10 @@ export const getTaskByIdStmt = db.prepare(`
     WHERE id = ?    
 `);
 
-// TODO: Addera statement för att uppdatera en task
+export const updateTaskStmt = db.prepare(`
+    UPDATE tasks
+    SET status = ?, person = ?
+    WHERE id = ?
+`);
 
 // TODO: Addera statement för att radera en task

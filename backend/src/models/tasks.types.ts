@@ -13,3 +13,9 @@ export type newTask = {
   description: string;
   category: string;
 };
+
+export type updateTask = {
+  id: string;
+  status: string;
+  person: string;
+};

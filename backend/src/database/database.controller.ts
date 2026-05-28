@@ -1,8 +1,9 @@
-import { newTask, Task } from "../models/tasks.types";
+import { newTask, Task, updateTask } from "../models/tasks.types";
 import {
   createTaskStmt,
   getAllTasksStmt,
   getTaskByIdStmt,
+  updateTaskStmt,
 } from "./database.statements";
 
 export function createTask({ title, description, category }: newTask): number {
@@ -44,5 +45,9 @@ export function getTaskById(id: string) {
   return fetchedTask;
 }
 
-// TODO: Lägg till funktionalitet för att uppdatera en task
+export function updateTask({ id, status, person }: updateTask) {
+  const result = updateTaskStmt.run(status, person, id);
+  return result.changes > 0;
+}
+
 // TODO: Lägg till funktionalitet för att radera en specifik task
