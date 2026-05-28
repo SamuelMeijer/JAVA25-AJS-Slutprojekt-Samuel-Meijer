@@ -107,4 +107,7 @@ taskRouter.delete("/:id", (req: Request, res: Response) => {
   }
 });
 
-// TODO: Lägg till 404 - för requests som inte finns
+// Generell catch-all
+taskRouter.use((req: Request, res: Response) => {
+  res.status(404).json({ message: "Route not found" });
+});
