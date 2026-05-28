@@ -30,6 +30,7 @@ newTaskForm.addEventListener("submit", async (event) => {
         category,
       });
 
+      // Hiding old error message (if present) and rerendering cards to show updates in DOM
       hideUserFeedback();
       populateDom();
     } catch (error) {
