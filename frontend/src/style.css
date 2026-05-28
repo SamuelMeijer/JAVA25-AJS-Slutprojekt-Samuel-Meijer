@@ -11,8 +11,8 @@
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
+  --sans: system-ui, "Segoe UI", Roboto, sans-serif;
+  --heading: system-ui, "Segoe UI", Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
   font: 18px/145% var(--sans);
@@ -96,25 +96,6 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
-}
-
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
-
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
 }
 
 .hero {
@@ -279,7 +260,7 @@ code {
 
   &::before,
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -4.5px;
     border: 5px solid transparent;
@@ -293,4 +274,38 @@ code {
     right: 0;
     border-right-color: var(--border);
   }
+}
+
+/* TODO: Se vilken defaultstyling jag kan ta bort på ett bra sätt*/
+#newTaskForm {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+#newTaskForm input[type="submit"] {
+  margin: 1.5rem;
+}
+
+.tasksContainer {
+  width: 100%;
+  margin-top: 2rem;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  outline: 1px solid red;
+}
+
+.newTasksContainer,
+.doingTasksContainer,
+.doneTasksContainer {
+  width: 100%;
+  outline: solid 1px green;
+}
+
+.card {
+  border: 1px solid chocolate;
 }

@@ -4,10 +4,87 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>frontend</title>
+    <title>Scrum Board</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h1>Scrum Board</h1>
+        <form id="newTaskForm">
+          <label for="title">Title</label>
+          <input required type="text" name="title" id="" />
+          <label for="description">Description</label>
+          <input required type="text" name="description" id="" />
+
+          <span>
+            <input type="radio" name="category" id="ux" value="ux" checked />
+            <label for="ux">Ux</label>
+          </span>
+          <span>
+            <input
+              type="radio"
+              name="category"
+              id="frontend"
+              value="frontend"
+            />
+            <label for="frontend">Frontend</label>
+          </span>
+          <span>
+            <input type="radio" name="category" id="backend" value="backend" />
+            <label for="backend">Backend</label>
+          </span>
+
+          <input type="submit" value="Add Task" />
+        </form>
+      </header>
+
+      <main>
+        <!-- TODO: Remove dummy cards -->
+        <div class="tasksContainer">
+          <div class="newTasksContainer">
+            <h2>New Tasks</h2>
+            <div class="card">
+              <h3>Title</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+                hic?
+              </p>
+              <p>Frontend</p>
+              <p>Created at: 2026-05-25</p>
+              <p>ASSIGN</p>
+            </div>
+          </div>
+          <div class="doingTasksContainer">
+            <h2>In Progress</h2>
+            <div class="card">
+              <h3>Title</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+                hic?
+              </p>
+              <p>Frontend</p>
+              <p>Created at: 2026-05-25</p>
+              <p>Assigned to: KALLE KALLESON</p>
+              <p>MARK AS DONE</p>
+            </div>
+          </div>
+          <div class="doneTasksContainer">
+            <h2>Done</h2>
+            <div class="card">
+              <h3>Title</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto,
+                hic?
+              </p>
+              <p>Frontend</p>
+              <p>Created at: 2026-05-25</p>
+              <p>Assigned to: KALLE KALLESON</p>
+              <p>REMOVE</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
