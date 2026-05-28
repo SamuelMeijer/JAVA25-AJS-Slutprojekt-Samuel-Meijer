@@ -1,4 +1,4 @@
-import type { Task, updateTask } from "./types/task";
+import type { newTask, Task, updateTask } from "./types/task";
 
 export async function getAllTasks(): Promise<Task[]> {
   const url = "http://localhost:3000/api/tasks/";
@@ -38,7 +38,26 @@ export async function getAllTasks(): Promise<Task[]> {
   }
 }
 
-// TODO: Add task
+export async function addTask(task: newTask) {
+  const url = `http://localhost:3000/api/tasks/`;
+  const options = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  };
+
+  const resp = await fetch(url, options);
+  if (resp.ok) {
+    const data = await resp.json();
+    return data;
+  } else {
+    throw new Error(
+      "Something went wrong when adding task, please try again later",
+    );
+  }
+}
 
 export async function updateTask(task: updateTask) {
   const url = `http://localhost:3000/api/tasks/${task.id}`;
