@@ -11,6 +11,21 @@ taskRouter.get("/", (req: Request, res: Response) => {
   res.json(tasks);
 });
 
+taskRouter.get("/:id", (req: Request, res: Response) => {
+  const { id } = req.params;
+
+  let task;
+  if (typeof id === "string") {
+    task = db.getTaskById(id as string);
+  }
+
+  if (task) {
+    res.json(task);
+  } else {
+    res.status(404).json({ error: "No task with that id could be found" });
+  }
+});
+
 taskRouter.post("/", createTaskValidation, (req: Request, res: Response) => {
   const errors = validationResult(req);
 
@@ -29,6 +44,6 @@ taskRouter.post("/", createTaskValidation, (req: Request, res: Response) => {
     .json({ message: `POST '/' - Adding task with id: ${newTaskId}` });
 });
 
-// TODO: Lägg till funktionalitet för att kunna hämta task via ID
 // TODO: Lägg till funktionalitet för att uppdatera en task - Med validering
 // TODO: Lägg till funktionalitet för att radera en specifik task
+// TODO: Lägg till 404 - för requests som inte finns

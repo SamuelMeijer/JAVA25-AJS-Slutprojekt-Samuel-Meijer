@@ -1,5 +1,9 @@
 import { newTask, Task } from "../models/tasks.types";
-import { createTaskStmt, getAllTasksStmt } from "./database.statements";
+import {
+  createTaskStmt,
+  getAllTasksStmt,
+  getTaskByIdStmt,
+} from "./database.statements";
 
 export function createTask({ title, description, category }: newTask): number {
   // Skapar 'YYYY-MM-DD'-string
@@ -16,7 +20,7 @@ export function createTask({ title, description, category }: newTask): number {
     currentTime,
   );
 
-  // TODO: Addera felhantering om det inte går att skapa
+  // TODO: Addera felhantering om det inte går att skapa?
 
   return result.lastInsertRowid as number;
 }
@@ -35,6 +39,10 @@ export function getAllTasks() {
   })) as Task[];
 }
 
-// TODO: Lägg till funktionalitet för att kunna hämta task via ID
+export function getTaskById(id: string) {
+  const fetchedTask = getTaskByIdStmt.get(id);
+  return fetchedTask;
+}
+
 // TODO: Lägg till funktionalitet för att uppdatera en task
 // TODO: Lägg till funktionalitet för att radera en specifik task

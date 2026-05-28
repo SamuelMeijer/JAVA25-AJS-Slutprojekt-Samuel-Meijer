@@ -9,7 +9,10 @@ export const getAllTasksStmt = db.prepare(`
     SELECT * FROM tasks    
 `);
 
-// TODO: Addera statement för att hämta en specifik task
+export const getTaskByIdStmt = db.prepare(`
+    SELECT * FROM tasks
+    WHERE id = ?    
+`);
 
 // TODO: Addera statement för att uppdatera en task
 

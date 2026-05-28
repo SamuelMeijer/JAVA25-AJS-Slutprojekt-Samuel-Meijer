@@ -1,4 +1,4 @@
-import { body } from "express-validator";
+import { body, oneOf } from "express-validator";
 
 export const createTaskValidation = [
   body("title").exists().isString().trim().notEmpty(),
@@ -17,3 +17,5 @@ export const createTaskValidation = [
       );
     }),
 ];
+
+// TODO: Addera validation för uppdatering. Kan använda 'oneOf' för att säkerställa att en av två värden finns eftersom man ska kunna uppdatera person eller status.
