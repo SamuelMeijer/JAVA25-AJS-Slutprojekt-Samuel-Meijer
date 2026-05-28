@@ -4,6 +4,7 @@ import { emptyCardsContainers, showUserFeedback } from "./layoutUtilities";
 
 // Fetching all tasks and populate DOM with cards
 export async function populateDom() {
+  // Removing old cards (if any are present)
   emptyCardsContainers();
 
   try {

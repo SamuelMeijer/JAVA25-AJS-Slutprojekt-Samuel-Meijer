@@ -1,6 +1,11 @@
 import { type Task, type updateTask } from "./types/task";
-import { addToDoingCardsContainer } from "./layoutUtilities";
+import {
+  addToDoingCardsContainer,
+  hideUserFeedback,
+  showUserFeedback,
+} from "./layoutUtilities";
 import * as api from "./api";
+import { populateDom } from "./populateDom";
 
 export function renderDoingTaskCard(task: Task) {
   const newCard = document.createElement("div");
@@ -19,9 +24,19 @@ export function renderDoingTaskCard(task: Task) {
   doneButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    // TODO: Fixa så det visas
     const updateTask: updateTask = { id: task.id, status: "done" };
-    api.updateTask(updateTask);
+    try {
+      api.updateTask(updateTask);
+
+      // Hiding old error message (if present) and rerendering cards to show updates in DOM
+      hideUserFeedback();
+      populateDom();
+    } catch (error) {
+      showUserFeedback(
+        "Something went wrong when updating task, please try again later",
+      );
+      console.error(error);
+    }
   });
 
   newCard.append(doneButton);

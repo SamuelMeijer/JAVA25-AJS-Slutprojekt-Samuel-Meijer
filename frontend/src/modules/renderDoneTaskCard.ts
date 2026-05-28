@@ -1,5 +1,11 @@
 import { type Task } from "./types/task";
-import { addToDoneCardsContainer } from "./layoutUtilities";
+import {
+  addToDoneCardsContainer,
+  hideUserFeedback,
+  showUserFeedback,
+} from "./layoutUtilities";
+import { populateDom } from "./populateDom";
+import * as api from "./api";
 
 export function renderDoneTaskCard(task: Task) {
   const newCard = document.createElement("div");
@@ -15,11 +21,21 @@ export function renderDoneTaskCard(task: Task) {
   const removeButton = document.createElement("button");
   removeButton.textContent = "Remove";
 
-  // TODO: Flytta till separat fil för bättre readability?
   removeButton.addEventListener("click", async (event) => {
     event.preventDefault();
 
-    // TODO: Fixa så task tas bort från DB och DOM
+    try {
+      api.removeTask(task.id);
+
+      // Hiding old error message (if present) and rerendering cards to show updates in DOM
+      hideUserFeedback();
+      populateDom();
+    } catch (error) {
+      showUserFeedback(
+        "Something went wrong when deleting task from the server, please try again later",
+      );
+      console.error(error);
+    }
   });
 
   newCard.append(removeButton);

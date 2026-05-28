@@ -38,6 +38,8 @@ export async function getAllTasks(): Promise<Task[]> {
   }
 }
 
+// TODO: Add task
+
 export async function updateTask(task: updateTask) {
   const url = `http://localhost:3000/api/tasks/${task.id}`;
 
@@ -58,11 +60,10 @@ export async function updateTask(task: updateTask) {
     body: JSON.stringify(bodyObj),
   };
 
-  // TODO: Funkar - Men fixa till som det ska vara
   const resp = await fetch(url, options);
   if (resp.ok) {
     const data = await resp.json();
-    console.log("data: ", data);
+    return data;
   } else {
     if (resp.status === 404)
       throw new Error("Error: No tasks with that id found");
@@ -73,6 +74,22 @@ export async function updateTask(task: updateTask) {
   }
 }
 
-// TODO: Add task
+export async function removeTask(id: number) {
+  const url = `http://localhost:3000/api/tasks/${id}`;
+  const options = {
+    method: "DELETE",
+  };
 
-// TODO: Remove task
+  const resp = await fetch(url, options);
+  if (resp.ok) {
+    const data = await resp.json();
+    return data;
+  } else {
+    if (resp.status === 404)
+      throw new Error("Error: No tasks with that id found");
+    else
+      throw new Error(
+        "Something went wrong when deleting task, please try again later",
+      );
+  }
+}
