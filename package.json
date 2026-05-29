@@ -2,7 +2,10 @@
   "name": "ajs-scrum-board",
   "version": "1.0.0",
   "description": "A Scrum Board",
-  "workspaces": ["frontend", "backend"],
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "homepage": "https://github.com/SamuelMeijer/JAVA25-AJS-Slutprojekt-Samuel-Meijer#readme",
   "bugs": {
     "url": "https://github.com/SamuelMeijer/JAVA25-AJS-Slutprojekt-Samuel-Meijer/issues"
@@ -16,6 +19,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "install": "npm install --workspace=frontend && npm install --workspace=backend",
+    "build": "npm run build:frontend && npm run build:backend",
+    "start": "npm run start:backend"
   }
 }
