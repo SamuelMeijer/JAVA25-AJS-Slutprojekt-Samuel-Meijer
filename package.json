@@ -20,8 +20,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "install": "npm install --workspace=frontend && npm install --workspace=backend",
-    "build": "npm run build:frontend && npm run build:backend",
-    "start": "npm run start:backend"
+    "build": "npm run build --workspaces --if-present",
+    "start": "npm run start --workspace=backend"
   }
 }
